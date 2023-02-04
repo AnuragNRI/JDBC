@@ -6,10 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-
 public class TestUpdate {
     public static void main(String[] args) {
-        String urlMySQL = "jdbc:mysql://localhost:3306/hr";
+        String urlMySQL = "jdbc:mysql://localhost:3306/assignment5";
         String username = "root";
         String password = "12345";
         Scanner sc = new Scanner(System.in);
@@ -19,7 +18,7 @@ public class TestUpdate {
 
         try {
             Connection conSQL = DriverManager.getConnection(urlMySQL, username, password);
-            System.out.println("Connection Successful");
+            
             System.out.println("Enter the id of the student whose data you want to change");
             int stuID = Integer.parseInt(sc.nextLine());
 
@@ -31,7 +30,7 @@ public class TestUpdate {
                 case "name":
                     System.out.println("Enter the new name of the Student ");
                     String newName = sc.nextLine();
-                    if(newName.isEmpty()){
+                    if (newName.isEmpty()) {
                         System.out.println("Empty name not Allowed");
                         break;
                     }
@@ -45,14 +44,14 @@ public class TestUpdate {
                 case "age":
                     System.out.println("Enter the new age of the Student ");
                     int newAge = Integer.parseInt(sc.nextLine());
-                    if(newAge <= 0){
+                    if (newAge <= 0) {
                         System.out.println("Wrong Input for the age");
                         break;
                     }
-                    //update student set age = 21 where id = 1006;
-                     query= "update student set age = " + newAge + " where id =" + stuID;
-                     System.out.println(query);
-                     stmt = conSQL.createStatement();
+                    // update student set age = 21 where id = 1006;
+                    query = "update student set age = " + newAge + " where id =" + stuID;
+                    System.out.println(query);
+                    stmt = conSQL.createStatement();
                     x = stmt.executeUpdate(query);
                     System.out.println("Age updated succesfully");
                     break;
@@ -60,7 +59,7 @@ public class TestUpdate {
                 case "address":
                     System.out.println("Enter the new address of the Student ");
                     String newAddress = sc.nextLine();
-                    if(newAddress.isEmpty()){
+                    if (newAddress.isEmpty()) {
                         System.out.println("Empty Address not Allowed");
                         break;
                     }
@@ -74,7 +73,7 @@ public class TestUpdate {
                 case "course":
                     System.out.println("Enter the new course of the Student ");
                     int newCourse = Integer.parseInt(sc.nextLine());
-                    if(newCourse < 3001 || newCourse > 3004){
+                    if (newCourse < 101 || newCourse > 105) {
                         System.out.println("Wrong Input for the course");
                         break;
                     }
@@ -96,7 +95,5 @@ public class TestUpdate {
 
         sc.close();
     }
-
-
 
 }

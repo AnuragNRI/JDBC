@@ -5,18 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import java.sql.ResultSet;
 
 public class TestInsert {
     public static void main(String[] args) {
-        String urlMySQL = "jdbc:mysql://localhost:3306/hr";
+        String urlMySQL = "jdbc:mysql://localhost:3306/assignment5";
         String username = "root";
         String password = "12345";
         Scanner sc = new Scanner(System.in);
 
         try {
             Connection conSQL = DriverManager.getConnection(urlMySQL, username, password);
-            System.out.println("Connection Successful");
+
 
             System.out.println("Insert a new Row in the Table Student ------");
 
@@ -33,19 +32,21 @@ public class TestInsert {
                 System.out.println("Enter the course the Student want's to enroll in");
                 int courseEnrolled = Integer.parseInt(sc.nextLine());
 
-                String query = "insert into student( name , age ,address, course) values(\'" + fullName + "\'," + stuAge +",\'" + stuAddress+ "\'," + courseEnrolled+ ");"; 
-                System.out.println(query);
+                String query = "insert into student( name , age ,address, course) values(\'" + fullName + "\'," + stuAge
+                        + ",\'" + stuAddress + "\'," + courseEnrolled + ");";
+
                 Statement stmt = conSQL.createStatement();
                 int x = stmt.executeUpdate(query);
-                System.out.println(x + "record insered succesfully");
+                System.out.println("Record insered succesfully");
 
                 String response = "";
                 System.out.println("Do you want to Insert Another Row");
                 response = sc.nextLine();
 
-                if(response.equals("no")){
+                if (response.equals("no")) {
                     checked = false;
-                }else continue;
+                } else
+                    continue;
 
                 i++;
             }
@@ -56,3 +57,4 @@ public class TestInsert {
     }
 
 }
+
